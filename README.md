@@ -27,7 +27,6 @@ yarn install
 ```
 
 ### 3. Cấu hình biến môi trường
--   Sao chép file `.env.example` thành một file mới tên là `.env.development` (nếu có file `.env.example`).
 -   Mở file `.env.development` và cập nhật các giá trị cho phù hợp với môi trường local của bạn.
 
 ---
