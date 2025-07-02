@@ -149,7 +149,8 @@ const CourseManagement = () => {
   // New states for general stats
   const [generalStats, setGeneralStats] = useState(null);
   const [loadingGeneralStats, setLoadingGeneralStats] = useState(false);
-  const [selectedQuizForLineChart, setSelectedQuizForLineChart] = useState(null);
+  const [selectedQuizForLineChart, setSelectedQuizForLineChart] =
+    useState(null);
   const [lineChartData, setLineChartData] = useState([]);
   const [loadingLineChart, setLoadingLineChart] = useState(false);
 
@@ -272,21 +273,21 @@ const CourseManagement = () => {
         const isSyncing = syncingCourseIds.has(record.id);
         const moreMenuItems = [
           {
-            key: 'student-view',
+            key: "student-view",
             icon: <UserOutlined />,
-            label: 'Xem giao diện học viên',
+            label: "Xem giao diện học viên",
             onClick: () => navigate(`/admin/student-course-view/${record.id}`),
           },
           {
-            key: 'docs',
+            key: "docs",
             icon: <FileTextOutlined />,
-            label: 'Quản lý tài liệu',
+            label: "Quản lý tài liệu",
             onClick: () => handleViewDocuments(record),
           },
           {
-            key: 'quiz-stats',
+            key: "quiz-stats",
             icon: <BarChartOutlined />,
-            label: 'Thống kê Quiz',
+            label: "Thống kê Quiz",
             onClick: () => handleViewQuizStatistics(record),
           },
         ];
@@ -878,7 +879,9 @@ const CourseManagement = () => {
         });
 
         // Calculate pass rate based on best attempts
-        const passedQuizzesCount = bestAttempts.filter((a) => a.isPassed).length;
+        const passedQuizzesCount = bestAttempts.filter(
+          (a) => a.isPassed
+        ).length;
         const passRate =
           quizzesTaken > 0 ? (passedQuizzesCount / quizzesTaken) * 100 : 0;
 
@@ -900,7 +903,9 @@ const CourseManagement = () => {
   };
 
   const handleViewStudentHistory = async (student) => {
-    const studentInfo = studentList.find(s => s.studentId === selectedStudentId);
+    const studentInfo = studentList.find(
+      (s) => s.studentId === selectedStudentId
+    );
     setSelectedStudentInfo(studentInfo);
     setStudentHistoryVisible(true);
     setLoadingStudentHistory(true);
@@ -1551,7 +1556,7 @@ const CourseManagement = () => {
             <LargeFileUpload
               onFileSelect={handleFileSelect}
               accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.gif,.bmp,.webp,.mp4,.avi,.mov,.wmv,.flv,.mkv"
-              maxSizeMB={250}
+              maxSizeMB={5}
               uploading={uploading}
               uploadProgress={uploadProgress}
               showProgress={showProgress}
@@ -1613,12 +1618,28 @@ const CourseManagement = () => {
                   <ResponsiveContainer width="100%" height={400}>
                     <BarChart data={generalStats.quizPerformance}>
                       <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="quizTitle" angle={-45} textAnchor="end" height={100} interval={0} />
+                      <XAxis
+                        dataKey="quizTitle"
+                        angle={-45}
+                        textAnchor="end"
+                        height={100}
+                        interval={0}
+                      />
                       <YAxis allowDecimals={false} />
                       <RechartsTooltip />
                       <Legend />
-                      <Bar dataKey="passedCount" name="Đã đạt" stackId="a" fill="#82ca9d" />
-                      <Bar dataKey="failedCount" name="Chưa đạt" stackId="a" fill="#ff4d4f" />
+                      <Bar
+                        dataKey="passedCount"
+                        name="Đã đạt"
+                        stackId="a"
+                        fill="#82ca9d"
+                      />
+                      <Bar
+                        dataKey="failedCount"
+                        name="Chưa đạt"
+                        stackId="a"
+                        fill="#ff4d4f"
+                      />
                     </BarChart>
                   </ResponsiveContainer>
                 </Card>
@@ -1743,7 +1764,8 @@ const CourseManagement = () => {
                         align: "center",
                         sorter: (a, b) => a.score - b.score,
                         render: (score, record) => {
-                          const maxScore = record.maxScore > 0 ? record.maxScore : 10;
+                          const maxScore =
+                            record.maxScore > 0 ? record.maxScore : 10;
                           return (
                             <span
                               style={{
